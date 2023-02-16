@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f3f5f9;
+  padding: 0 10px;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  background-color: #fff;
+  padding: 20px 20px;
+  border-radius: 5px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.form-control input {
+  padding: 13px 18px;
+  border: 1px solid lightgray;
+  outline: none;
+  border-radius: 8px;
+  color: #686f7f;
+  font-size: 1.02rem;
+  transition: 100ms all ease-in-out;
+}
+
+.form-control input:focus {
+  border: 1px solid #7c54d6;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #7c54d6;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  letter-spacing: 1px;
+  transition: 100ms all ease-in-out;
+}
+
+.button:hover {
+  background-color: #623cbb;
+}
+
+.error-message {
+  display: none;
+}
