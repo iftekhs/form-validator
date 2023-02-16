@@ -93,6 +93,7 @@ body {
   cursor: pointer;
   letter-spacing: 1px;
   transition: 100ms all ease-in-out;
+  margin-top: 10px;
 }
 
 .button:hover {
