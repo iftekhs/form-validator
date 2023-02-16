@@ -19,38 +19,59 @@ const showSuccess = (input) => {
 };
 
 // Check if email is valid
-const isValidEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+const checkEmail = (input) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (input.value !== '') {
+    if (!regex.test(input.value)) {
+      showError(input, 'Email is not valid');
+    } else {
+      showSuccess(input);
+    }
+  }
+};
+
+// Get fieldname
+const getFieldName = (input) => {
+  let fieldname = input.id.charAt(0).toUpperCase() + input.id.slice(1);
+  if (fieldname === 'Password2') fieldname = 'Confirm password is required';
+  return fieldname;
+};
+
+// Check required fields
+const checkRequired = (inputArr) => {
+  inputArr.forEach((input) => {
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+};
+
+// Check input length
+const checkLength = (input, min, max) => {
+  if (input.value.length < min) {
+    showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+  } else if (input.value.length > max) {
+    showError(input, `${getFieldName(input)} must be less than ${max} characters`);
+  } else {
+    showSuccess(input);
+  }
+};
+
+// Check passwords match
+const checkPasswordsMatch = (input1, input2) => {
+  if (input1.value !== input2.value) {
+    showError(input2, 'Passwords do not match');
+  }
 };
 
 // Event Listeners
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-
-  if (username.value === '') {
-    showError(username, 'Username is required');
-  } else {
-    showSuccess(username);
-  }
-
-  if (email.value === '') {
-    showError(email, 'Email is required');
-  } else if (!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid');
-  } else {
-    showSuccess(email);
-  }
-
-  if (password.value === '') {
-    showError(password, 'Password is required');
-  } else {
-    showSuccess(password);
-  }
-
-  if (password2.value === '') {
-    showError(password2, 'Confirm password is required');
-  } else {
-    showSuccess(password2);
-  }
+  checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
+  checkEmail(email);
+  checkPasswordsMatch(password, password2);
 });
