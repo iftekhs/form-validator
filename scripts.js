@@ -75,3 +75,5 @@ form.addEventListener('submit', (e) => {
   checkEmail(email);
   checkPasswordsMatch(password, password2);
 });
+
+// Release v.1.0
